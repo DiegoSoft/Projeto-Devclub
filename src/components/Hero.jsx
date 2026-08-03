@@ -4,6 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Button from './Button'
 import '../styles/hero.css'
 import logo from '../assets/logo.png'
+import aluno01 from '../assets/professores/fernanda.jpg'
+import aluno02 from '../assets/professores/henrique.jpg'
+import aluno03 from '../assets/professores/juliana.jpg'
+import aluno04 from '../assets/professores/mateus.jpg'
+import aluno05 from '../assets/professores/agustinho.jpg'
+import aluno06 from '../assets/professores/marcio.jpg'
 
 // Registra o plugin do GSAP usado para criar animações conectadas ao scroll.
 gsap.registerPlugin(ScrollTrigger)
@@ -33,6 +39,10 @@ const companies = [
   'Magalu',
   'Bradesco',
 ]
+
+// Mini avatares usados como prova social no Hero.
+// Eles criam uma sensação rápida de comunidade e reforçam que muitas pessoas já passaram pela jornada.
+const studentAvatars = [aluno01, aluno02, aluno03, aluno04, aluno05, aluno06]
 
 function Hero() {
   // Referência principal do Hero. O GSAP usa esse elemento como escopo das animações.
@@ -92,6 +102,8 @@ function Hero() {
           .from('.hero-title-line', { yPercent: 112, rotateX: -18, filter: 'blur(8px)', duration: 1.18, stagger: 0.14 }, '-=0.38')
           .from('.hero-copy', { y: 18, autoAlpha: 0, filter: 'blur(8px)', duration: 0.98 }, '-=0.42')
           .from('.hero-actions', { y: 22, autoAlpha: 0, scale: 0.98, duration: 0.62 }, '-=0.38')
+          .from('.hero-social-proof', { y: 16, autoAlpha: 0, scale: 0.96, duration: 0.52 }, '-=0.22')
+          .from('.hero-avatar', { x: -10, autoAlpha: 0, scale: 0.72, duration: 0.34, stagger: 0.045 }, '-=0.28')
           .from('.hero-stat', { y: 16, autoAlpha: 0, duration: 0.48, stagger: 0.08 }, '-=0.24')
           .from('.hero-visual', { x: 42, scale: 0.88, rotate: -3, autoAlpha: 0, filter: 'blur(12px)', duration: 0.95 }, '-=1.1')
           .from('.hero-logo-core', { scale: 0.72, rotate: -10, autoAlpha: 0, duration: 0.8 }, '-=0.52')
@@ -264,6 +276,25 @@ function Hero() {
             <Button href="#dishes" variant="outline" className="hero-secondary-cta">
               Ver formações
             </Button>
+          </div>
+
+          {/* Prova social compacta: avatares sobrepostos e texto curto de confiança. */}
+          <div className="hero-social-proof" aria-label="Mais de 30 mil alunos já passaram pela DevClub">
+            <div className="hero-avatar-stack" aria-hidden="true">
+              {studentAvatars.map((avatar, index) => (
+                <img
+                  className="hero-avatar"
+                  src={avatar}
+                  alt=""
+                  key={avatar}
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                />
+              ))}
+            </div>
+            <p>
+              <strong>+30 mil alunos</strong>
+              <span>já passaram por aqui</span>
+            </p>
           </div>
 
           {/* Métricas rápidas para gerar confiança logo no primeiro viewport. */}
