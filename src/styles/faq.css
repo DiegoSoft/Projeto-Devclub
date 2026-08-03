@@ -1,0 +1,259 @@
+/* Seção FAQ: bloco final para responder objeções comuns de forma compacta. */
+.faq-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  background:
+    radial-gradient(circle at 14% 82%, rgba(57, 211, 83, 0.1), transparent 24rem),
+    radial-gradient(circle at 88% 18%, rgba(114, 26, 231, 0.14), transparent 25rem),
+    linear-gradient(180deg, #070a0c 0%, #0d0f0f 52%, #050606 100%);
+  color: #ffffff;
+}
+
+/* Luzes decorativas para manter a identidade visual da página. */
+.faq-glow {
+  position: absolute;
+  width: clamp(17rem, 32vw, 30rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(76px);
+  opacity: 0.24;
+  pointer-events: none;
+}
+
+/* Glow verde no canto inferior esquerdo. */
+.faq-glow.is-mint {
+  bottom: -12rem;
+  left: -10rem;
+  background: #39d353;
+}
+
+/* Glow roxo no topo direito. */
+.faq-glow.is-purple {
+  top: -12rem;
+  right: -10rem;
+  background: #721ae7;
+}
+
+/* Container principal em duas colunas: título/suporte à esquerda e acordeão à direita. */
+.faq-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.75fr) minmax(0, 1.35fr);
+  max-width: 1180px;
+  margin: 0 auto;
+  gap: clamp(2rem, 7vw, 8rem);
+  align-items: start;
+}
+
+/* Coluna lateral com título e card de suporte. */
+.faq-aside {
+  display: grid;
+  min-height: 100%;
+  gap: clamp(2rem, 16vw, 18rem);
+}
+
+/* Agrupa pill e título principal. */
+.faq-heading {
+  display: grid;
+  justify-items: start;
+}
+
+/* Pill pequeno igual ao estilo da referência. */
+.faq-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  width: max-content;
+  margin-bottom: 1.1rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+/* Título principal da seção. */
+.faq-heading h2 {
+  max-width: 18rem;
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3.2rem, 4.6vw, 5.7rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+}
+
+/* Card de suporte no canto inferior esquerdo. */
+.faq-support-card {
+  display: grid;
+  width: min(100%, 15rem);
+  gap: 1rem;
+  padding: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background:
+    linear-gradient(135deg, rgba(57, 211, 83, 0.08), transparent 36%),
+    rgba(18, 20, 20, 0.94);
+  box-shadow:
+    0 22px 54px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Avatar simples de suporte, sem depender de uma imagem externa. */
+.faq-support-avatar {
+  display: grid;
+  width: 2.35rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(57, 211, 83, 0.22);
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(57, 211, 83, 0.22), rgba(114, 26, 231, 0.24));
+  color: #ffffff;
+  font-weight: 900;
+}
+
+/* Texto do card de suporte. */
+.faq-support-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+/* Botão verde para contato/suporte. */
+.faq-support-button {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.78rem 1rem;
+  border-radius: 999px;
+  background: #7cff72;
+  color: #07100a;
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hover do botão para indicar ação. */
+.faq-support-button:hover {
+  box-shadow: 0 0 24px rgba(124, 255, 114, 0.28);
+  transform: translateY(-2px);
+}
+
+/* Lista de perguntas do acordeão. */
+.faq-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+/* Item individual do acordeão. */
+.faq-item {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 0.8rem;
+  background: rgba(18, 20, 20, 0.88);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Estado aberto: aumenta contraste e borda verde. */
+.faq-item.is-open {
+  border-color: rgba(57, 211, 83, 0.24);
+  background: rgba(21, 25, 24, 0.96);
+}
+
+/* Botão da pergunta: ocupa toda a linha e mantém acessibilidade nativa. */
+.faq-question {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  width: 100%;
+  gap: 1rem;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.25rem);
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  font: inherit;
+  font-weight: 900;
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Ícone de abrir/fechar pergunta. */
+.faq-question i {
+  display: grid;
+  width: 2rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.38rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.82);
+  font-style: normal;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+/* Resposta animada via GSAP. */
+.faq-answer {
+  height: 0;
+  overflow: hidden;
+}
+
+/* Texto da resposta com padding separado para a animação de altura ficar limpa. */
+.faq-answer p {
+  margin: 0;
+  padding: 0 1.25rem 1.25rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.96rem;
+  line-height: 1.65;
+}
+
+/* Tablet: reduz distância entre colunas. */
+@media (max-width: 900px) {
+  .faq-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .faq-aside {
+    gap: 1.5rem;
+  }
+
+  .faq-heading {
+    justify-items: center;
+    text-align: center;
+  }
+
+  .faq-heading h2 {
+    max-width: 26rem;
+  }
+
+  .faq-support-card {
+    width: min(100%, 28rem);
+    margin: 0 auto;
+  }
+}
+
+/* Mobile: melhora leitura e reduz padding lateral. */
+@media (max-width: 620px) {
+  .faq-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+  }
+}

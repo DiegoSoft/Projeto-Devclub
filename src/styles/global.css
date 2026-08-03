@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Bebas Neue', Impact, sans-serif;
+  --font-sans: 'Space Grotesk', Helvetica, Arial, sans-serif;
+  --font-mono: 'Space Mono', Courier New, monospace;
+  --font-serif: 'Newsreader', Georgia, serif;
+
+  --color-canvas-black: #131313;
+  --color-surface-slate: #2d2d2d;
+  --color-brand-mint: #3cffd0;
+  --color-brand-purple: #5200ff;
+  --color-border-mint: #309875;
+  --color-link-blue: #3860be;
+  --color-focus-cyan: #1eaedb;
+  --color-purple-rule: #3d00bf;
+  --color-hazard-white: #ffffff;
+  --color-dim-gray: #8c8c8c;
+  --color-image-frame: #313131;
+
+  --breakpoint-xs: 400px;
+}
+
+@layer base {
+  body {
+    background-color: #131313;
+    color: #ffffff;
+    /*font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;*/
+    font-family: Albert Sans, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    touch-action: manipulation;
+  }
+}
+
+@layer utilities {
+  /* Texto com efeito scramble: evita ligaduras e mantém a largura mais estável durante a troca de caracteres. */
+  .text-scramble {
+    display: inline-block;
+    font-variant-ligatures: none;
+    text-rendering: geometricprecision;
+  }
+
+  @media (width < 400px) {
+    .section-padding {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+  }
+  @media (width >= 400px) and (width < 768px) {
+    .section-padding {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+  }
+  @media (width >= 768px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  /* Hide scrollbar utility */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+}

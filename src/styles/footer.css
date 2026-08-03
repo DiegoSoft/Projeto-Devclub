@@ -1,0 +1,314 @@
+/* Footer final: fecha a landing com navegação, CTAs e palavra gigante revelada no scroll. */
+.site-footer {
+  position: relative;
+  min-height: clamp(38rem, 62vw, 52rem);
+  overflow: hidden;
+  padding: 0;
+  background:
+    radial-gradient(circle at 20% 78%, rgba(57, 211, 83, 0.1), transparent 28rem),
+    radial-gradient(circle at 82% 60%, rgba(114, 26, 231, 0.16), transparent 32rem),
+    linear-gradient(180deg, #050606 0%, #070a0c 46%, #050608 100%);
+  color: #ffffff;
+}
+
+/* Palavra gigante que aparece por baixo do painel, inspirada no efeito de telão da referência. */
+.footer-big-word {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(0.75rem, 2.4vw, 2.5rem);
+  z-index: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(7rem, 18vw, 18rem);
+  font-weight: 700;
+  line-height: 0.78;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.055);
+  text-shadow: none;
+  translate: -50% 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Painel superior do footer: funciona como o telão que sobe antes da palavra gigante aparecer. */
+.footer-panel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: clamp(1.6rem, 4vw, 3.2rem) clamp(1.25rem, 6vw, 5rem);
+  border: 0;
+  border-bottom: 1px solid rgba(57, 211, 83, 0.14);
+  border-radius: 0 0 clamp(1.8rem, 5vw, 3.8rem) clamp(1.8rem, 5vw, 3.8rem);
+  background:
+    linear-gradient(135deg, rgba(57, 211, 83, 0.06), transparent 34%),
+    linear-gradient(315deg, rgba(114, 26, 231, 0.1), transparent 36%),
+    rgba(12, 15, 18, 0.98);
+  box-shadow:
+    0 34px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Limita o conteúdo interno sem limitar o fundo do painel, que ocupa 100% da largura. */
+.footer-top,
+.footer-divider,
+.footer-content,
+.footer-bottom-card,
+.footer-copy {
+  max-width: 1240px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Topo do painel com marca e CTAs. */
+.footer-top {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Marca do footer com símbolo compacto. */
+.footer-brand {
+  display: inline-flex;
+  gap: 0.75rem;
+  align-items: center;
+  color: #ffffff;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-weight: 900;
+  text-decoration: none;
+}
+
+/* Selo DC usado como marca visual no footer. */
+.footer-brand-mark {
+  display: grid;
+  width: 2.25rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(57, 211, 83, 0.22);
+  border-radius: 50%;
+  background: rgba(57, 211, 83, 0.1);
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+}
+
+/* Agrupa os botões finais. */
+.footer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Ajuste fino do CTA reaproveitando o componente Button. */
+.footer-cta {
+  min-height: 2.7rem;
+  padding: 0 1.15rem;
+  font-size: 0.74rem;
+}
+
+/* Link de área do aluno com aparência de botão contornado. */
+.footer-login {
+  display: inline-flex;
+  min-height: 2.7rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.86);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+/* Hover do link de login. */
+.footer-login:hover {
+  border-color: rgba(57, 211, 83, 0.42);
+  background: rgba(57, 211, 83, 0.08);
+  color: #39d353;
+}
+
+/* Linha divisória interna. */
+.footer-divider {
+  height: 1px;
+  margin-top: clamp(1.4rem, 3vw, 2.5rem);
+  margin-bottom: clamp(1.4rem, 3vw, 2.5rem);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Área central com sociais e colunas de navegação. */
+.footer-content {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(2rem, 7vw, 7rem);
+}
+
+/* Links sociais em pequenas cápsulas. */
+.footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-content: start;
+}
+
+/* Estilo base dos links sociais. */
+.footer-social a {
+  display: inline-grid;
+  min-width: 2.8rem;
+  min-height: 2.5rem;
+  place-items: center;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* Grid das colunas de links. */
+.footer-link-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+/* Coluna individual de navegação. */
+.footer-column {
+  display: grid;
+  gap: 0.72rem;
+  align-content: start;
+}
+
+/* Título de cada coluna. */
+.footer-column h3 {
+  margin: 0 0 0.25rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.76rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Links do footer com base pronta para receber Text Scramble. */
+.footer-column a {
+  width: max-content;
+  max-width: 100%;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+/* Hover visual complementar ao scramble. */
+.footer-column a:hover,
+.footer-social a:hover {
+  color: #39d353;
+}
+
+/* Barra inferior com áreas de aprendizado, inspirada no bloco de cursos da referência. */
+.footer-bottom-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  margin-right: auto;
+  margin-left: auto;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.9rem;
+  background: rgba(24, 30, 36, 0.92);
+}
+
+/* Título da barra inferior. */
+.footer-bottom-card > span {
+  color: rgba(255, 255, 255, 0.88);
+  font-weight: 900;
+}
+
+/* Mini marcas/áreas no rodapé. */
+.footer-mini-brands {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem 1.25rem;
+  justify-content: flex-end;
+}
+
+/* Cada mini área de aprendizado. */
+.footer-mini-brands strong {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+}
+
+/* Copyright final. */
+.footer-copy {
+  margin-top: 1.1rem;
+  margin-bottom: 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+/* Tablet: empilha as áreas mantendo bom espaçamento. */
+@media (max-width: 860px) {
+  .site-footer {
+    min-height: 43rem;
+  }
+
+  .footer-big-word {
+    bottom: 0.85rem;
+    font-size: clamp(5.8rem, 18vw, 9rem);
+  }
+
+  .footer-top,
+  .footer-bottom-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .footer-actions,
+  .footer-mini-brands {
+    justify-content: flex-start;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Mobile: colunas viram uma lista vertical e a palavra gigante reduz agressividade. */
+@media (max-width: 620px) {
+  .site-footer {
+    min-height: 48rem;
+  }
+
+  .footer-panel {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .footer-link-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-big-word {
+    bottom: 1rem;
+    font-size: clamp(4.6rem, 22vw, 6.8rem);
+  }
+}

@@ -1,0 +1,240 @@
+/* Seção Sobre: apresenta os pilares da DevClub mantendo a mesma atmosfera visual do Hero. */
+.sobre-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8rem) 1.5rem;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(57, 211, 83, 0.12), transparent 28rem),
+    radial-gradient(circle at 84% 42%, rgba(114, 26, 231, 0.16), transparent 26rem),
+    linear-gradient(180deg, #080a0a 0%, #111313 52%, #131313 100%);
+  color: #ffffff;
+}
+
+/* Grid discreto no fundo para manter a linguagem tecnológica da página. */
+.sobre-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at 50% 35%, #000 0%, transparent 72%);
+  pointer-events: none;
+}
+
+/* Container interno para limitar largura e alinhar com o Hero. */
+.sobre-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho da seção: explica rapidamente por que a metodologia importa. */
+.sobre-header {
+  display: grid;
+  max-width: 980px;
+  margin: 0 auto clamp(3rem, 6vw, 4.5rem);
+  gap: 1rem;
+  text-align: center;
+}
+
+.sobre-eyebrow {
+  margin: 0;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+.sobre-title {
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3rem, 4.6vw, 6.3rem);
+  line-height: 0.92;
+  letter-spacing: 0;
+  text-transform: uppercase;
+
+}
+
+.sobre-title span {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.28);
+}
+
+.sobre-intro {
+  max-width: 47rem;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.7;
+}
+
+/* Lista dos pilares principais da metodologia. */
+.sobre-pillars {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* Linha decorativa que conecta os cards no desktop. */
+.sobre-pillars::before {
+  content: '';
+  position: absolute;
+  top: 4.35rem;
+  right: 12%;
+  left: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(57, 211, 83, 0.38), rgba(114, 26, 231, 0.36), transparent);
+  opacity: 0.7;
+}
+
+/* Card individual de cada pilar. */
+.sobre-card {
+  position: relative;
+  display: grid;
+  min-height: 23rem;
+  padding: clamp(1.25rem, 2.4vw, 2rem);
+  place-items: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018)),
+    rgba(12, 14, 14, 0.72);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(16px);
+  isolation: isolate;
+  will-change: transform, opacity, filter;
+}
+
+.sobre-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 0%, rgba(57, 211, 83, 0.13), transparent 52%);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.sobre-card:hover::before {
+  opacity: 1;
+}
+
+.sobre-card:hover {
+  border-color: rgba(57, 211, 83, 0.32);
+}
+
+/* Número pequeno no topo do card para reforçar sequência e organização. */
+.sobre-card-number {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.2rem;
+  color: rgba(255, 255, 255, 0.34);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.74rem;
+}
+
+/* Círculo roxo com ícone central, inspirado na referência enviada. */
+.sobre-icon-wrap {
+  display: grid;
+  width: 6rem;
+  aspect-ratio: 1;
+  margin-bottom: 1.8rem;
+  place-items: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 24%, rgba(255, 255, 255, 0.22), transparent 34%),
+    linear-gradient(135deg, #721ae7, #5b13c8);
+  box-shadow: 0 0 34px rgba(114, 26, 231, 0.38);
+}
+
+.sobre-icon {
+  display: block;
+  width: 3.1rem;
+  height: 3.1rem;
+  color: #ffffff;
+  overflow: visible;
+}
+
+.sobre-card-title {
+  max-width: 18rem;
+  margin: 0;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.sobre-card-text {
+  max-width: 22rem;
+  margin: 1.25rem auto 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(0.96rem, 1.25vw, 1.12rem);
+  line-height: 1.68;
+}
+
+/* Barra inferior animada pelo GSAP para dar acabamento dinâmico à seção. */
+.sobre-card-line {
+  position: absolute;
+  right: 1.25rem;
+  bottom: 1rem;
+  left: 1.25rem;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sobre-card-line span {
+  content: '';
+  display: block;
+  width: 42%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #39d353, #721ae7);
+  transform: translateX(-110%);
+}
+
+@media (max-width: 980px) {
+  .sobre-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-pillars::before {
+    display: none;
+  }
+
+  .sobre-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .sobre-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .sobre-header {
+    text-align: left;
+  }
+
+  .sobre-intro {
+    margin-left: 0;
+  }
+
+  .sobre-card {
+    place-items: start;
+    text-align: left;
+  }
+
+  .sobre-icon-wrap {
+    width: 5.25rem;
+  }
+}

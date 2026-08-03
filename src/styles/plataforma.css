@@ -1,0 +1,284 @@
+.plataforma-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(57, 211, 83, 0.1), transparent 24rem),
+    radial-gradient(circle at 88% 74%, rgba(114, 26, 231, 0.16), transparent 26rem),
+    linear-gradient(180deg, #080b0f 0%, #111313 52%, #070a0c 100%);
+  color: #ffffff;
+}
+
+.plataforma-glow {
+  position: absolute;
+  width: clamp(16rem, 30vw, 28rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.34;
+  pointer-events: none;
+}
+
+.plataforma-glow.is-mint {
+  top: -10rem;
+  left: -8rem;
+  background: #39d353;
+}
+
+.plataforma-glow.is-purple {
+  right: -10rem;
+  bottom: -10rem;
+  background: #721ae7;
+}
+
+.plataforma-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.plataforma-header {
+  display: grid;
+  justify-items: center;
+  max-width: 820px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.plataforma-eyebrow {
+  margin-bottom: 0.75rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+.plataforma-title {
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.35rem, 4.6vw, 4.35rem);
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.plataforma-title span {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.25);
+}
+
+.plataforma-header p {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.plataforma-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(1rem, 3vw, 1.6rem);
+  align-items: start;
+}
+
+.plataforma-preview-card {
+  position: relative;
+  position: sticky;
+  top: 6rem;
+  overflow: hidden;
+  min-height: clamp(24rem, 42vw, 34rem);
+  border: 1px solid rgba(57, 211, 83, 0.12);
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at 10% 90%, rgba(57, 211, 83, 0.14), transparent 22rem),
+    radial-gradient(circle at 90% 90%, rgba(114, 26, 231, 0.18), transparent 22rem),
+    rgba(5, 8, 10, 0.92);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.plataforma-browser-bar {
+  display: none;
+  position: relative;
+  z-index: 2;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(5, 8, 10, 0.72);
+}
+
+.plataforma-browser-bar span {
+  width: 0.62rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.plataforma-browser-bar strong {
+  margin-left: 0.6rem;
+  color: rgba(255, 255, 255, 0.44);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+}
+
+.plataforma-image-mask {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.plataforma-image-mask img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: center center;
+  opacity: 1;
+}
+
+.plataforma-floating-badge {
+  position: absolute;
+  z-index: 3;
+  padding: 0.62rem 0.85rem;
+  border: 1px solid rgba(57, 211, 83, 0.18);
+  border-radius: 999px;
+  background: rgba(8, 14, 16, 0.75);
+  color: rgba(255, 255, 255, 0.82);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+}
+
+.plataforma-floating-badge.is-top {
+  top: 1.2rem;
+  left: 1.2rem;
+}
+
+.plataforma-floating-badge.is-bottom {
+  right: 1.2rem;
+  bottom: 1.2rem;
+}
+
+.plataforma-features-grid {
+  position: relative;
+  min-height: clamp(15rem, 26vw, 21rem);
+  perspective: 1200px;
+  isolation: isolate;
+  margin-top:60px;
+}
+
+.plataforma-feature-card {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  z-index: calc(30 - var(--stack-index, 0));
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.85rem;
+  align-content: start;
+  align-items: start;
+  padding: 1rem;
+  min-height: 7.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.95rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(57, 211, 83, 0.12), transparent 72%),
+    linear-gradient(135deg, rgba(35, 43, 49, 0.98), rgba(10, 15, 19, 0.98));
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 1.2rem 2.6rem rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform-origin: center center;
+  user-select: none;
+  cursor: default;
+  will-change: transform, opacity;
+}
+
+.plataforma-feature-card.is-active {
+  cursor: pointer;
+  border-color: rgba(57, 211, 83, 0.36);
+  box-shadow:
+    0 1.6rem 3rem rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(57, 211, 83, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.plataforma-feature-card.is-back-card .plataforma-feature-content,
+.plataforma-feature-card.is-back-card .plataforma-feature-icon {
+  opacity: 0.42;
+}
+
+.plataforma-feature-content {
+  min-width: 0;
+}
+
+.plataforma-feature-icon {
+  display: grid;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 0.75rem;
+  background: rgba(57, 211, 83, 0.1);
+  color: #39d353;
+}
+
+.plataforma-feature-icon svg {
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.plataforma-feature-card h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1rem;
+  line-height: 1.15;
+}
+
+.plataforma-feature-card p {
+  margin: 0.35rem 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 1024px) {
+  .plataforma-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .plataforma-features-grid {
+    min-height: 17rem;
+  }
+
+  .plataforma-feature-card {
+    width: min(100%, 28rem);
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .plataforma-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .plataforma-preview-card {
+    min-height: 23rem;
+  }
+
+  .plataforma-features-grid {
+    min-height: 18rem;
+  }
+
+  .plataforma-floating-badge {
+    font-size: 0.66rem;
+  }
+}

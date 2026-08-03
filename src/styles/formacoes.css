@@ -1,0 +1,709 @@
+/* Seção Formações: transforma a lista de cursos em uma rota visual de aprendizado. */
+.formacoes-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8rem) 1.5rem;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(114, 26, 231, 0.16), transparent 28rem),
+    radial-gradient(circle at 84% 72%, rgba(57, 211, 83, 0.12), transparent 28rem),
+    linear-gradient(180deg, #131313 0%, #080a0a 48%, #111313 100%);
+  color: #ffffff;
+}
+
+/* Palavra gigante de fundo: adiciona identidade visual sem interferir no conteúdo principal. */
+.formacoes-bg-word {
+  position: absolute;
+  top: 4%;
+  right: -1rem;
+  color: rgba(255, 255, 255, 0.035);
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(5rem, 16vw, 16rem);
+  line-height: 0.8;
+  text-align: right;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Container central: mantém a seção alinhada com o restante da landing page. */
+.formacoes-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Grid principal: divide a timeline e o painel lateral em duas colunas no desktop. */
+.formacoes-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, 0.75fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+/* Área da timeline: cria espaço à esquerda para a linha vertical e os pontos animados. */
+.formacoes-timeline-container {
+  position: relative;
+  padding-left: clamp(2rem, 4vw, 4rem);
+}
+
+/* Linha base da timeline: fica pontilhada para sugerir caminho antes do progresso verde. */
+.formacoes-spine {
+  position: absolute;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  left: 0.55rem;
+  width: 2px;
+  border-left: 1px dashed rgba(114, 26, 231, 0.62);
+}
+
+/* Linha de progresso: é escalada pelo GSAP conforme o usuário rola pela seção. */
+.formacoes-progress-line {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 4px;
+  height: 100%;
+  background: #39d353;
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(57, 211, 83, 0.48);
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+
+/* Cabeçalho da seção: apresenta a promessa principal antes da lista de formações. */
+.formacoes-header {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Eyebrow: pequeno texto técnico que conversa com a estética do hero. */
+.formacoes-eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+/* Título principal: usa tipografia grande para manter impacto visual institucional. */
+.formacoes-title {
+  max-width: 52rem;
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3rem, 5.0vw, 6.3rem);
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Destaque verde no título para reforçar a cor principal da marca visual da página. */
+.formacoes-title span {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.25);
+}
+
+/* Texto introdutório: explica a utilidade da seção em linguagem simples. */
+.formacoes-intro {
+  max-width: 42rem;
+  margin: 1.25rem 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.7;
+}
+
+/* Lista das formações: organiza os cards com espaçamento constante entre etapas. */
+.formacoes-list {
+  display: grid;
+  gap: 1.15rem;
+}
+
+/* Item da timeline: agrupa número, ponto e card de cada formação. */
+.formacoes-timeline-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+/* Ponto da timeline: começa discreto e fica verde quando o item entra em foco pelo scroll. */
+.formacoes-dot {
+  position: absolute;
+  top: 1.15rem;
+  left: calc(-1 * clamp(2rem, 4vw, 4rem) - 0.05rem);
+  z-index: 2;
+  width: 0.85rem;
+  height: 0.85rem;
+  border: 1px solid rgba(114, 26, 231, 0.65);
+  border-radius: 50%;
+  background: #131313;
+}
+
+/* Número da etapa: ajuda o visitante a perceber a progressão da jornada. */
+.formacoes-step {
+  padding-top: 1rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12rem;
+}
+
+/* Card base: usa vidro escuro, borda sutil e blur para combinar com o hero. */
+.formacoes-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.018)),
+    rgba(17, 19, 19, 0.78);
+  box-shadow: 0 20px 54px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+}
+
+/* Variante verde: destaca formações estratégicas sem perder harmonia com a paleta. */
+.formacoes-card.is-mint {
+  border-color: transparent;
+  background: linear-gradient(135deg, #39d353, #2fbf6f);
+  color: #07100a;
+}
+
+/* Variante roxa: cria contraste visual e conversa com os detalhes neon da página. */
+.formacoes-card.is-purple {
+  border-color: transparent;
+  background: linear-gradient(135deg, #721ae7, #5200ff);
+}
+
+/* Tag do card: resume a categoria da formação com visual mais técnico. */
+.formacoes-tag {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+}
+
+/* Ajuste de contraste da tag quando o card tem fundo verde. */
+.formacoes-card.is-mint .formacoes-tag {
+  color: rgba(7, 16, 10, 0.68);
+}
+
+/* Nome da formação: mantém leitura rápida mesmo com muitos cards. */
+.formacoes-name {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.15;
+}
+
+/* Descrição da formação: dá contexto sem transformar o card em texto longo. */
+.formacoes-description {
+  margin: 0.7rem 0 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Ajuste de legibilidade para descrições dentro dos cards verdes. */
+.formacoes-card.is-mint .formacoes-description {
+  color: rgba(7, 16, 10, 0.75);
+}
+
+/* Painel lateral: fica fixo no desktop para acompanhar a timeline durante o scroll. */
+.formacoes-aside {
+  position: sticky;
+  top: 7.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Card institucional lateral: resume a ideia da jornada de forma mais comercial. */
+.formacoes-panel {
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(57, 211, 83, 0.14), transparent 56%),
+    rgba(17, 19, 19, 0.84);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(18px);
+}
+
+/* Label do painel lateral: cria uma entrada curta antes do título. */
+.formacoes-panel-label {
+  display: block;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+/* Título do painel: reforça a mensagem de evolução com direção. */
+.formacoes-panel-title {
+  margin: 1rem 0 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.4rem, 3.6vw, 4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+/* Texto do painel: explica por que a timeline existe dentro da landing page. */
+.formacoes-panel-text {
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+}
+
+/* Mini grid de métricas: transforma benefícios em pequenos blocos fáceis de memorizar. */
+.formacoes-mini-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+/* Mini card: cada bloco mostra um dado rápido sobre a jornada. */
+.formacoes-mini-card {
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+/* Número ou palavra-chave do mini card. */
+.formacoes-mini-card strong {
+  display: block;
+  color: #ffffff;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 1.35rem;
+}
+
+/* Legenda do mini card. */
+.formacoes-mini-card span {
+  display: block;
+  margin-top: 0.3rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+/* Painel final de IA: funciona como fechamento premium depois da timeline de formações. */
+.formacoes-ai-panel {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding: clamp(2.25rem, 5vw, 4.5rem);
+  border: 1px solid rgba(57, 211, 83, 0.22);
+  border-radius: clamp(1.5rem, 3vw, 2.5rem);
+  background:
+    radial-gradient(circle at 8% 88%, rgba(231, 74, 55, 0.42), transparent 18rem),
+    radial-gradient(circle at 88% 82%, rgba(57, 211, 83, 0.34), transparent 20rem),
+    radial-gradient(circle at 64% 12%, rgba(20, 190, 170, 0.32), transparent 22rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    #101414;
+  box-shadow:
+    0 34px 90px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  isolation: isolate;
+}
+
+/* Camadas de brilho: criam profundidade e simulam uma luz suave atrás do conteúdo. */
+.formacoes-ai-glow {
+  position: absolute;
+  z-index: -1;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  filter: blur(18px);
+  opacity: 0.68;
+  pointer-events: none;
+}
+
+/* Brilho quente no canto inferior esquerdo, inspirado na referência enviada. */
+.formacoes-ai-glow.is-left {
+  bottom: -7rem;
+  left: -6rem;
+  background: rgba(231, 74, 55, 0.58);
+}
+
+/* Brilho verde no canto inferior direito para manter a identidade DevClub. */
+.formacoes-ai-glow.is-right {
+  right: -6rem;
+  bottom: -6rem;
+  background: rgba(57, 211, 83, 0.48);
+}
+
+/* Conteúdo central do painel: limita a largura e mantém tudo alinhado no centro. */
+.formacoes-ai-content {
+  display: grid;
+  justify-items: center;
+  max-width: 58rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Selo superior: apresenta o tema do bloco antes do título grande. */
+.formacoes-ai-badge {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.38rem 0.78rem;
+  border: 1px solid rgba(57, 211, 83, 0.2);
+  border-radius: 999px;
+  background: rgba(57, 211, 83, 0.11);
+  color: rgba(57, 211, 83, 0.88);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+}
+
+/* Título do painel: fecha a seção com uma frase forte e institucional. */
+.formacoes-ai-title {
+  max-width: 48rem;
+  margin: 1rem 0 0;
+  color: #ffffff;
+  font-size: clamp(2.3rem, 5.6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+/* Destaque verde-azulado do título para criar hierarquia visual. */
+.formacoes-ai-title span {
+  color: #4ad6c5;
+  text-shadow: 0 0 28px rgba(74, 214, 197, 0.26);
+}
+
+/* Linha de ferramentas: cria uma sequência de tiles inspirada em aplicativos de IA. */
+.formacoes-ai-tools {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.25rem);
+  margin-top: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+/* Tile base: cria uma moldura premium para cada logo de ferramenta. */
+.formacoes-ai-tool {
+  position: relative;
+  display: grid;
+  width: clamp(3.7rem, 7vw, 5.25rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 1.25rem;
+  color: #ffffff;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(0.92rem, 1.8vw, 1.25rem);
+  font-weight: 900;
+  box-shadow:
+    0 18px 32px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* Logo real da ferramenta: fica acima do fallback e mantém proporção dentro do tile. */
+.formacoes-ai-tool img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 52%;
+  height: 52%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.28));
+}
+
+/* Fallback visual: aparece como apoio caso algum SVG externo não carregue. */
+.formacoes-ai-tool-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  opacity: 0.16;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+}
+
+/* Variações de cor dos tiles para criar ritmo visual parecido com apps reais. */
+.formacoes-ai-tool.is-openai {
+  background: linear-gradient(135deg, #111827, #00a67e);
+}
+
+.formacoes-ai-tool.is-claude {
+  background: linear-gradient(135deg, #ff7a59, #ffd36a);
+}
+
+.formacoes-ai-tool.is-gemini {
+  background: linear-gradient(135deg, #5aa8ff, #3369ff);
+}
+
+.formacoes-ai-tool.is-meta {
+  background: linear-gradient(135deg, #32d6ff, #6b4cff);
+}
+
+.formacoes-ai-tool.is-perplexity {
+  background: linear-gradient(135deg, #25d0c7, #14515b);
+}
+
+.formacoes-ai-tool.is-n8n {
+  background: linear-gradient(135deg, #39d353, #1fb7a6);
+}
+
+.formacoes-ai-tool.is-powerbi {
+  background: linear-gradient(135deg, #ffe24a, #d99a00);
+  color: #15110a;
+}
+
+.formacoes-ai-tool.is-copilot {
+  background: linear-gradient(135deg, #151515, #0a382e);
+}
+
+/* Texto do painel: organiza os parágrafos e mantém leitura confortável. */
+.formacoes-ai-copy {
+  display: grid;
+  gap: 1rem;
+  max-width: 45rem;
+  margin-top: clamp(1.8rem, 4vw, 2.7rem);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  line-height: 1.65;
+}
+
+/* Remove margens padrão para controlar o espaçamento pelo grid acima. */
+.formacoes-ai-copy p {
+  margin: 0;
+}
+
+/* CTA do painel: destaca a ação final dentro do bloco sem competir com o Hero. */
+.formacoes-ai-cta {
+  min-height: 3.15rem;
+  margin-top: 2.2rem;
+  padding: 0 1.75rem;
+  font-size: 0.9rem;
+}
+
+/* Painel de stack: fecha Formações mostrando ferramentas reais em formato de faixa dinâmica. */
+.formacoes-stack-panel {
+  position: relative;
+  overflow: hidden;
+  margin-top: clamp(2rem, 5vw, 3.8rem);
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+  border: 1px solid rgba(57, 211, 83, 0.12);
+  border-radius: clamp(1.25rem, 2.4vw, 2rem);
+  background:
+    radial-gradient(circle at 50% -18%, rgba(57, 211, 83, 0.16), transparent 24rem),
+    radial-gradient(circle at 50% 110%, rgba(74, 214, 197, 0.13), transparent 22rem),
+    linear-gradient(180deg, rgba(9, 26, 28, 0.9), rgba(9, 13, 18, 0.96));
+  box-shadow:
+    0 26px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Sombras laterais: escondem o início/fim das linhas e criam sensação de movimento infinito. */
+.formacoes-stack-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  width: min(16vw, 11rem);
+  pointer-events: none;
+}
+
+/* Fade esquerdo do marquee. */
+.formacoes-stack-fade.is-left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(8, 13, 17, 0.98), transparent);
+}
+
+/* Fade direito do marquee. */
+.formacoes-stack-fade.is-right {
+  right: 0;
+  background: linear-gradient(270deg, rgba(8, 13, 17, 0.98), transparent);
+}
+
+/* Cabeçalho do painel: explica rapidamente o contexto das tecnologias exibidas. */
+.formacoes-stack-header {
+  display: grid;
+  justify-items: center;
+  gap: 0.55rem;
+  max-width: 46rem;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.2rem);
+  padding: 0 1.25rem;
+  text-align: center;
+}
+
+/* Kicker pequeno: conecta o bloco com a ideia de ferramentas usadas pelo mercado. */
+.formacoes-stack-kicker {
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+/* Texto do cabeçalho: mantém o fechamento claro e direto. */
+.formacoes-stack-header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: clamp(0.95rem, 1.4vw, 1.08rem);
+  line-height: 1.6;
+}
+
+/* Área das linhas animadas: organiza os chips em duas faixas independentes. */
+.formacoes-stack-marquee {
+  display: grid;
+  gap: 1rem;
+}
+
+/* Linha do marquee: usa largura máxima do conteúdo e se desloca continuamente para a esquerda. */
+.formacoes-stack-row {
+  display: flex;
+  width: max-content;
+  min-width: 200%;
+  gap: 0.85rem;
+  padding-inline: 0.85rem;
+  animation: formacoesStackScroll 50s linear infinite;
+}
+
+/* Segunda linha: anda no sentido contrário para criar profundidade e evitar monotonia. */
+.formacoes-stack-row.is-reverse {
+  animation-name: formacoesStackScrollReverse;
+  animation-duration: 51s;
+}
+
+/* Chip de tecnologia: combina logo, nome e visual glassmorphism para ficar próximo da referência. */
+.formacoes-stack-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: max-content;
+  padding: 0.72rem 1.05rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.65rem;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+    rgba(18, 31, 35, 0.76);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 800;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 14px 32px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+/* Logo do chip: mantém todos os ícones com tamanho consistente. */
+.formacoes-stack-chip img {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.28));
+}
+
+/* Movimento principal: desloca metade da lista duplicada para criar loop perfeito. */
+@keyframes formacoesStackScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Movimento reverso: mesma lógica da linha principal, mas no sentido contrário. */
+@keyframes formacoesStackScrollReverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Tablet: remove a segunda coluna para preservar leitura e evitar aperto visual. */
+@media (max-width: 1024px) {
+  .formacoes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .formacoes-aside {
+    position: relative;
+    top: 0;
+  }
+
+  .formacoes-ai-panel {
+    margin-top: 4rem;
+  }
+
+  .formacoes-stack-row {
+    animation-duration: 50s;
+  }
+
+  .formacoes-stack-row.is-reverse {
+    animation-duration: 50s;
+  }
+}
+
+/* Mobile: simplifica a timeline e reduz margens para caber melhor em telas pequenas. */
+@media (max-width: 640px) {
+  .formacoes-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .formacoes-timeline-container {
+    padding-left: 2rem;
+  }
+
+  .formacoes-timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .formacoes-step {
+    padding-top: 0;
+  }
+
+  .formacoes-dot {
+    left: -2.05rem;
+  }
+
+  .formacoes-ai-panel {
+    padding: 2rem 1rem;
+    border-radius: 1.4rem;
+  }
+
+  .formacoes-ai-tools {
+    gap: 0.65rem;
+  }
+
+  .formacoes-ai-tool {
+    border-radius: 1rem;
+  }
+
+  .formacoes-stack-panel {
+    margin-right: -0.25rem;
+    margin-left: -0.25rem;
+    padding-block: 1.7rem;
+  }
+
+  .formacoes-stack-chip {
+    padding: 0.62rem 0.85rem;
+    font-size: 0.78rem;
+  }
+
+  .formacoes-stack-chip img {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+}

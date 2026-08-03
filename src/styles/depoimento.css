@@ -1,0 +1,109 @@
+.depoimentos-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(57, 211, 83, 0.1), transparent 24rem),
+    radial-gradient(circle at 88% 74%, rgba(114, 26, 231, 0.16), transparent 26rem),
+    linear-gradient(180deg, #080b0f 0%, #111313 52%, #070a0c 100%);
+  color: #ffffff;
+}
+
+.depoimentos-glow {
+  position: absolute;
+  width: clamp(16rem, 30vw, 28rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.34;
+  pointer-events: none;
+}
+
+.depoimentos-glow.is-mint {
+  top: -10rem;
+  left: -8rem;
+  background: #39d353;
+}
+
+.depoimentos-glow.is-purple {
+  right: -10rem;
+  bottom: -10rem;
+  background: #721ae7;
+}
+
+.depoimentos-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.depoimentos-header {
+  display: grid;
+  justify-items: center;
+  max-width: 860px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.depoimentos-title {
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(2.35rem, 4.6vw, 4.35rem);
+  line-height: 0.94;
+  text-transform: uppercase;
+}
+
+.depoimentos-title span {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.25);
+}
+
+.depoimentos-showcase {
+  display: grid;
+  place-items: center;
+}
+
+.depoimentos-video-card {
+  position: relative;
+  display: grid;
+  width: min(100%, 58rem);
+  padding: clamp(0.5rem, 1vw, 0.85rem);
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(57, 211, 83, 0.12);
+  border-radius: 1.6rem;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(57, 211, 83, 0.16), transparent 22rem),
+    radial-gradient(circle at 88% 100%, rgba(114, 26, 231, 0.18), transparent 24rem),
+    rgba(5, 8, 10, 0.86);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.depoimentos-video-mask {
+  position: relative;
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  place-items: center;
+  border-radius: 1.05rem;
+  background: #030507;
+}
+
+.depoimentos-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: inherit;
+}
+
+@media (max-width: 640px) {
+  .depoimentos-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}

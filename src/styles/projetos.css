@@ -1,0 +1,325 @@
+/* Seção Projetos: mostra uma galeria visual de projetos práticos e reais. */
+.projetos-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4.5rem, 8vw, 7rem) 1.5rem;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(57, 211, 83, 0.1), transparent 24rem),
+    radial-gradient(circle at 82% 78%, rgba(114, 26, 231, 0.18), transparent 28rem),
+    linear-gradient(180deg, #070a0c 0%, #111313 48%, #080b10 100%);
+  color: #ffffff;
+}
+
+/* Correção final do layout wave: desktop volta a ter 9 cards horizontais. */
+@media (min-width: 1101px) {
+  .projetos-wave-gallery {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    min-height: clamp(20rem, 29vw, 26rem);
+  }
+}
+
+/* Tablet: mantém formato horizontal rolável sem transformar a galeria em cards gigantes. */
+@media (max-width: 1100px) {
+  .projetos-wave-gallery {
+    display: flex;
+    min-height: auto;
+    padding-bottom: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projeto-card {
+    flex: 0 0 min(28vw, 13.5rem);
+    min-height: 20rem;
+    scroll-snap-align: center;
+  }
+}
+
+/* Mobile: cards maiores no carrossel para leitura confortável. */
+@media (max-width: 640px) {
+  .projeto-card {
+    flex-basis: min(74vw, 18rem);
+    min-height: 21rem;
+  }
+}
+
+/* Brilhos decorativos: criam continuidade visual com as seções anteriores. */
+.projetos-glow {
+  position: absolute;
+  width: clamp(18rem, 34vw, 30rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(76px);
+  opacity: 0.28;
+  pointer-events: none;
+}
+
+/* Glow verde lateral. */
+.projetos-glow.is-left {
+  top: 8%;
+  left: -10rem;
+  background: #39d353;
+}
+
+/* Glow roxo lateral. */
+.projetos-glow.is-right {
+  right: -10rem;
+  bottom: 4%;
+  background: #721ae7;
+}
+
+/* Container central da seção. */
+.projetos-container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1440px);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho compacto para apresentar o bloco antes da galeria. */
+.projetos-header {
+  max-width: 820px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+/* Eyebrow técnico da seção. */
+.projetos-eyebrow {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.18rem;
+  text-transform: uppercase;
+}
+
+/* Título principal da seção. */
+.projetos-title {
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3rem, 4.6vw, 5.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+/* Destaque verde no título. */
+.projetos-title span {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.24);
+}
+
+/* Texto de apoio do cabeçalho. */
+.projetos-header p {
+  max-width: 48rem;
+  margin: 1rem auto 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: clamp(1rem, 1.35vw, 1.12rem);
+  line-height: 1.7;
+}
+
+/* Galeria wave: 9 cards em colunas estáveis para evitar que algum projeto desapareça. */
+.projetos-wave-gallery {
+  display: grid;
+  grid-template-columns: repeat(9, minmax(0, 1fr));
+  min-height: clamp(26rem, 42vw, 34rem);
+  gap: clamp(0.45rem, 0.75vw, 0.72rem);
+  align-items: stretch;
+  perspective: 1200px;
+}
+
+/* Card de projeto: permanece visível e ganha destaque apenas por transformações visuais. */
+.projeto-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1rem;
+  background: #0d1117;
+  box-shadow:
+    0 22px 50px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transform-origin: center center;
+  filter: none;
+  z-index: 1;
+}
+
+/* Imagem do projeto: preenche o card e acompanha a expansão do hover. */
+.projeto-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  backface-visibility: hidden;
+  filter: saturate(0.96) contrast(1.08);
+  transform: scale(1.04);
+  transition:
+    filter 0.45s ease,
+    transform 0.55s ease;
+}
+
+/* Hover da imagem: o card ativo fica mais nítido e cinematográfico. */
+.projeto-card:hover img,
+.projeto-card:focus-within img,
+.projeto-card.is-project-active img {
+  filter: saturate(1.14) contrast(1.12);
+  transform: scale(1.1);
+}
+
+/* Overlay escuro inferior com informações do projeto. */
+.projeto-card-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 0.3rem;
+  padding: 1.1rem;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.86));
+  opacity: 0.82;
+  transform: translateY(18%);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+/* Ao focar o card, o texto fica mais legível. */
+.projeto-card:hover .projeto-card-overlay,
+.projeto-card:focus-within .projeto-card-overlay,
+.projeto-card.is-project-active .projeto-card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Número do projeto. */
+.projeto-card-overlay span {
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+/* Título do projeto. */
+.projeto-card-overlay h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.1vw, 1.2rem);
+  line-height: 1.05;
+}
+
+/* Stack usada no projeto. */
+.projeto-card-overlay p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+
+/* Tablet: reduz quantidade visual de cards por linha usando wrap. */
+@media (max-width: 900px) {
+  .projetos-wave-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: auto;
+  }
+
+  .projeto-card {
+    min-height: 18rem;
+  }
+}
+
+/* Adaptável para telas médias */
+@media (max-width: 900px) {
+  .projetos-wave-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: auto;
+  }
+
+  .projeto-card {
+    min-height: 18rem;
+  }
+}
+
+/* Mobile: transforma a galeria em carrossel horizontal para evitar uma página muito longa. */
+@media (max-width: 640px) {
+  .projetos-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .projetos-wave-gallery {
+    display: flex;
+    min-height: auto;
+    margin-right: -1rem;
+    margin-left: -1rem;
+    padding: 0 1rem 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projeto-card {
+    flex: 0 0 min(78vw, 20rem);
+    min-height: 24rem;
+    scroll-snap-align: center;
+  }
+
+  .projetos-wave-gallery::-webkit-scrollbar {
+    height: 0.35rem;
+  }
+
+  .projetos-wave-gallery::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+  }
+
+.projetos-wave-gallery::-webkit-scrollbar-thumb {
+    background: rgba(57, 211, 83, 0.55);
+    border-radius: 999px;
+  }
+}
+
+/* Correção final do layout wave: desktop volta a ter 9 cards horizontais. */
+@media (min-width: 1101px) {
+  .projetos-wave-gallery {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    min-height: clamp(26rem, 42vw, 34rem);
+  }
+}
+
+/* Tablet: mantém formato horizontal rolável sem transformar a galeria em cards gigantes. */
+@media (max-width: 1100px) {
+  .projetos-wave-gallery {
+    display: flex;
+    min-height: auto;
+    padding-bottom: 1.25rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .projeto-card {
+    flex: 0 0 min(30vw, 15rem);
+    min-height: 24rem;
+    scroll-snap-align: center;
+  }
+}
+
+/* Mobile: cards maiores no carrossel para leitura confortável. */
+@media (max-width: 640px) {
+  .projeto-card {
+    flex-basis: min(78vw, 20rem);
+  }
+}

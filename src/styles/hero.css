@@ -1,0 +1,550 @@
+/* Seção principal do Hero: define altura, fundo escuro, gradientes e estado inicial invisível para a animação de entrada. */
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 74% 30%, rgba(57, 211, 83, 0.22), transparent 28rem),
+    radial-gradient(circle at 18% 72%, rgba(56, 96, 190, 0.22), transparent 24rem),
+    linear-gradient(135deg, #080a0a 0%, #101313 42%, #151515 100%);
+  color: #ffffff;
+  opacity: 0;
+}
+
+/* Âncora invisível usada pelos links do menu para voltar ao início do Hero. */
+.hero-anchor {
+  position: absolute;
+  top: 0;
+}
+
+/* Grid decorativo de fundo com máscara radial para dar sensação de tecnologia sem poluir a leitura. */
+.hero-bg-grid {
+  position: absolute;
+  inset: -20%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at 60% 42%, #000 0%, transparent 68%);
+}
+
+/* Camada de textura/noise para deixar o fundo menos plano e mais premium. */
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px),
+    linear-gradient(180deg, rgba(19, 19, 19, 0.1), rgba(19, 19, 19, 0.72));
+  pointer-events: none;
+}
+
+/* Container principal do Hero: organiza texto e visual em duas colunas no desktop. */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  min-height: 100svh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8.5rem 1.5rem 4rem;
+  grid-template-columns: minmax(0, 1.02fr) minmax(340px, 0.98fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  perspective: 1200px;
+}
+
+/* Texto pequeno acima do título, usado como posicionamento institucional da DevClub. */
+.hero-eyebrow {
+  margin: 0 0 1.2rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.22rem;
+  text-transform: uppercase;
+}
+
+/* Título principal: grande, impactante e em caixa alta para dominar o primeiro viewport. */
+.hero-title {
+  max-width: 780px;
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3.4rem, 5.5vw, 7.6rem);
+  font-weight: 350;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+/* Máscara de cada linha do título; permite a animação de entrada vindo de baixo. */
+.hero-title-mask {
+  display: block;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+/* Linha animável do título; o GSAP altera transform e filter durante a entrada. */
+.hero-title-line {
+  display: block;
+  transform-origin: 50% 100%;
+  will-change: transform, filter;
+    margin-top: 10px;
+}
+
+/* Linha verde de destaque no título, reforçando a identidade visual da DevClub. */
+.hero-title-line.accent {
+  color: #39d353;
+  text-shadow: 0 0 28px rgba(57, 211, 83, 0.36);
+    font-size: clamp(3.4rem, 5.1vw, 7.6rem);
+  margin-bottom: 10px;
+}
+
+/* Otimização para elementos animados com GSAP. */
+.hero-eyebrow,
+.hero-copy,
+.hero-content,
+.hero-card {
+  will-change: transform, opacity, filter;
+}
+
+/* Parágrafo de apoio: explica a proposta sem competir visualmente com o título. */
+.hero-copy {
+  max-width: 42rem;
+  margin: 1.55rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.7;
+}
+
+/* Área dos botões principais do Hero. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+/* Tamanho mínimo dos CTAs para manter presença visual e boa área de clique. */
+.hero-primary-cta,
+.hero-secondary-cta {
+  min-width: 13.75rem;
+}
+
+/* Bloco de métricas: adiciona prova social logo no primeiro contato do visitante. */
+.hero-stats {
+  display: grid;
+  max-width: 37rem;
+  margin-top: 2.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Cada métrica individual dentro do bloco de prova social. */
+.hero-stat {
+  padding: 1rem 1rem 0 0;
+}
+
+/* Número principal da métrica. */
+.hero-stat strong {
+  display: block;
+  color: #ffffff;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(1.25rem, 2vw, 1.8rem);
+}
+
+/* Texto descritivo da métrica. */
+.hero-stat span {
+  display: block;
+  margin-top: 0.25rem;
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+/* Composição visual do lado direito: funciona como peça gráfica tecnológica do Hero. */
+.hero-visual {
+  position: relative;
+  width: min(100%, 34rem);
+  aspect-ratio: 1;
+  justify-self: center;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(57, 211, 83, 0.22) 0 18%, transparent 19%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0 40%, transparent 41%),
+    radial-gradient(circle, rgba(57, 211, 83, 0.08), transparent 68%);
+  filter: drop-shadow(0 34px 70px rgba(0, 0, 0, 0.48));
+}
+
+/* Anéis decorativos animados ao redor do logo. */
+.hero-orbit {
+  position: absolute;
+
+  inset: 8%;
+  border: 1px solid rgba(57, 211, 83, 0.28);
+  border-radius: 50%;
+}
+
+/* Pontos luminosos posicionados nos anéis. */
+.hero-orbit::before,
+.hero-orbit::after {
+  content: '';
+  position: absolute;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background-color: #39d353;
+  box-shadow: 0 0 24px #39d353;
+}
+
+/* Posição do primeiro ponto luminoso do anel. */
+.hero-orbit::before {
+  top: 8%;
+  left: 16%;
+}
+
+/* Posição do segundo ponto luminoso do anel. */
+.hero-orbit::after {
+  right: 10%;
+  bottom: 18%;
+}
+
+/* Segundo anel, girando em sentido contrário para criar profundidade. */
+.hero-orbit.reverse {
+  inset: 18%;
+  border-color: rgba(56, 96, 190, 0.36);
+}
+
+/* Ajusta a cor dos pontos do anel secundário. */
+.hero-orbit.reverse::before,
+.hero-orbit.reverse::after {
+  background-color: #721AE7;
+  box-shadow: 0 0 24px #721AE7;
+}
+
+/* Card central com o logo da DevClub. */
+.hero-logo-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  width: 10rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(57, 211, 83, 0.36);
+  border-radius: 2rem;
+  background: rgba(19, 19, 19, 0.78);
+  box-shadow:
+    0 0 40px rgba(57, 211, 83, 0.22),
+    inset 0 0 28px rgba(255, 255, 255, 0.06);
+  transform: translate(-50%, -50%) rotate(8deg);
+  backdrop-filter: blur(18px);
+}
+
+/* Imagem do logo dentro do card central. */
+.hero-logo-core img {
+  width: 58%;
+  height: auto;
+}
+
+/* Estilo base dos cards flutuantes do visual direito. */
+.hero-card {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  background: rgba(12, 14, 14, 0.78);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+}
+
+/* Card que simula uma janela de código. */
+.hero-code-card {
+  top: 2%;
+  left: -2%;
+  width: min(20rem, 62vw);
+  padding: 0.9rem;
+}
+
+/* Barra superior da janela de código, inspirada em interfaces de editor. */
+.code-window-bar {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Botões decorativos da janela de código. */
+.code-window-bar span {
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 50%;
+  background: #39d353;
+}
+
+
+/* Segundo botão decorativo da janela de código. */
+.code-window-bar span:nth-child(2) {
+  background: #ffffff;
+}
+
+/* Terceiro botão decorativo da janela de código. */
+.code-window-bar span:nth-child(3) {
+  background: #721AE7;
+}
+
+/* Texto do card de código. */
+.hero-code-card pre {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(0.62rem, 1.2vw, 0.82rem);
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+/* Cada linha individual do código, animada em cascata pelo GSAP. */
+.code-line {
+  display: block;
+}
+
+/* Card com comando de terminal e formação atual. */
+.hero-terminal-card {
+  right: -1%;
+  bottom: 25%;
+  display: grid;
+  gap: 0.35rem;
+  min-width: 14rem;
+  padding: 1rem 1.1rem;
+}
+
+/* Texto verde do prompt no card de terminal. */
+.terminal-prompt {
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+}
+
+/* Títulos dos cards de terminal e jornada. */
+.hero-terminal-card strong,
+.hero-level-card strong {
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.04rem;
+  text-transform: uppercase;
+}
+
+/* Card menor que apresenta a jornada FullStack. */
+.hero-level-card {
+  bottom: 7%;
+  left: 12%;
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.9rem 1rem;
+}
+
+/* Label interno do card de jornada. */
+.hero-level-card span {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+}
+
+/* Área das partículas decorativas que sobem no fundo. */
+.hero-embers {
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Partícula individual animada pelo GSAP. */
+.hero-ember {
+  position: absolute;
+  bottom: -1rem;
+  width: 0.3rem;
+  height: 0.3rem;
+  border-radius: 50%;
+  background: #39d353;
+  box-shadow: 0 0 14px #39d353;
+  opacity: 0.8;
+}
+
+/* Variação roxa de algumas partículas para combinar com a paleta. */
+.hero-ember:nth-child(3n) {
+  background: #721AE7;
+  box-shadow: 0 0 14px #721AE7;
+}
+
+/* Posições horizontais das partículas para distribuir o efeito pelo Hero. */
+.hero-ember:nth-child(1) { left: 5%; }
+.hero-ember:nth-child(2) { left: 11%; }
+.hero-ember:nth-child(3) { left: 18%; }
+.hero-ember:nth-child(4) { left: 23%; }
+.hero-ember:nth-child(5) { left: 29%; }
+.hero-ember:nth-child(6) { left: 34%; }
+.hero-ember:nth-child(7) { left: 42%; }
+.hero-ember:nth-child(8) { left: 49%; }
+.hero-ember:nth-child(9) { left: 53%; }
+.hero-ember:nth-child(10) { left: 59%; }
+.hero-ember:nth-child(11) { left: 64%; }
+.hero-ember:nth-child(12) { left: 71%; }
+.hero-ember:nth-child(13) { left: 78%; }
+.hero-ember:nth-child(14) { left: 83%; }
+.hero-ember:nth-child(15) { left: 88%; }
+.hero-ember:nth-child(16) { left: 93%; }
+.hero-ember:nth-child(17) { left: 14%; }
+.hero-ember:nth-child(18) { left: 38%; }
+.hero-ember:nth-child(19) { left: 57%; }
+.hero-ember:nth-child(20) { left: 69%; }
+.hero-ember:nth-child(21) { left: 81%; }
+.hero-ember:nth-child(22) { left: 96%; }
+
+/* Faixa de empresas abaixo do Hero, usada como prova social e autoridade. */
+.hero__companies-track {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  max-width: 1280px;
+  margin: -2.5rem auto 0;
+  padding: 1.1rem 1.5rem 1.35rem;
+  grid-template-columns: minmax(12rem, 0.28fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(90deg, rgba(8, 10, 10, 0.82), rgba(8, 10, 10, 0.42)),
+    rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(14px);
+}
+
+/* Texto explicativo fixo da faixa de empresas. */
+.hero__companies-copy {
+  max-width: 15rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(0.85rem, 1.6vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+/* Janela do marquee: esconde overflow e cria fade nas bordas com mask. */
+.hero__companies-marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Lista duplicada de empresas; o GSAP move essa lista horizontalmente. */
+.hero__companies-list {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(2.4rem, 5vw, 4.75rem);
+  will-change: transform;
+}
+
+/* Nome de cada empresa dentro do marquee. */
+.hero__company {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.48);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(1.05rem, 2vw, 1.65rem);
+  font-weight: 900;
+  letter-spacing: 0.04rem;
+  white-space: nowrap;
+  text-transform: none;
+  transition:
+    color 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+/* Destaque no hover das empresas. */
+.hero__company:hover {
+  color: #39d353;
+  text-shadow: 0 0 18px rgba(57, 211, 83, 0.35);
+}
+
+/* Ajustes para tablets: Hero passa para uma coluna e a faixa fica mais confortável. */
+@media (max-width: 980px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    padding-top: 7.5rem;
+  }
+
+  .hero-visual {
+    width: min(100%, 29rem);
+    margin-top: 1rem;
+  }
+
+  .hero__companies-track {
+    margin-top: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .hero__companies-copy {
+    max-width: none;
+  }
+}
+
+/* Ajustes para celulares: CTAs empilham e cards ficam mais compactos. */
+@media (max-width: 640px) {
+  .hero-inner {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 14vw, 4.6rem);
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-primary-cta,
+  .hero-secondary-cta {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .hero-stat {
+    padding-top: 0.8rem;
+  }
+
+  .hero-code-card {
+    left: 0;
+  }
+
+  .hero-terminal-card {
+    right: 0;
+    min-width: 12rem;
+  }
+
+  .hero__companies-track {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .hero__companies-list {
+    gap: 2rem;
+  }
+}
+
+/* Acessibilidade: reduz movimento para usuários que preferem menos animação. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-section {
+    opacity: 1;
+  }
+
+  .hero__companies-list {
+    transform: none;
+  }
+
+}

@@ -1,0 +1,265 @@
+/* Seção Mercado: bloco compacto para mostrar potencial de remuneração com barras animadas. */
+.mercado-section {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(4rem, 7vw, 6rem) 1.5rem;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(57, 211, 83, 0.1), transparent 24rem),
+    radial-gradient(circle at 84% 78%, rgba(114, 26, 231, 0.16), transparent 25rem),
+    linear-gradient(180deg, #080b10 0%, #0f1111 48%, #070a0c 100%);
+  color: #ffffff;
+}
+
+/* Container central com largura controlada para manter o componente compacto. */
+.mercado-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  max-width: 980px;
+  margin: 0 auto;
+  gap: clamp(1.6rem, 3vw, 2.35rem);
+}
+
+/* Cabeçalho do bloco com texto centralizado. */
+.mercado-header {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+/* Eyebrow pequeno para conectar o bloco ao tema de carreira. */
+.mercado-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.7rem;
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16rem;
+  text-transform: uppercase;
+}
+
+/* Marcador visual do eyebrow. */
+.mercado-eyebrow::before {
+  width: 0.42rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 18px rgba(57, 211, 83, 0.72);
+  content: '';
+}
+
+/* Título principal inspirado na referência enviada. */
+.mercado-header h2 {
+  margin: 0;
+  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-size: clamp(3rem, 4.6vw, 5.75rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+}
+
+/* Texto curto para explicar o sentido do gráfico. */
+.mercado-header p {
+  max-width: 43rem;
+  margin: 0.9rem auto 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: clamp(0.98rem, 1.25vw, 1.08rem);
+  line-height: 1.7;
+}
+
+/* Card principal do gráfico com aparência de painel premium. */
+.mercado-card {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: clamp(1rem, 2vw, 1.45rem);
+  background:
+    linear-gradient(135deg, rgba(57, 211, 83, 0.09), transparent 32%),
+    linear-gradient(315deg, rgba(114, 26, 231, 0.12), transparent 34%),
+    rgba(18, 20, 20, 0.94);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Brilho interno sutil para deixar o painel menos plano. */
+.mercado-card::before {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.08), transparent 24rem);
+  content: '';
+  pointer-events: none;
+}
+
+/* Topo do card com título do gráfico e descrição curta. */
+.mercado-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: clamp(1.6rem, 3vw, 2.35rem);
+}
+
+/* Título interno do gráfico. */
+.mercado-card-top h3 {
+  margin: 0;
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+
+/* Badge lateral do card. */
+.mercado-card-top span {
+  padding: 0.42rem 0.65rem;
+  border: 1px solid rgba(57, 211, 83, 0.18);
+  border-radius: 999px;
+  background: rgba(57, 211, 83, 0.1);
+  color: #39d353;
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+/* Lista vertical das linhas do gráfico. */
+.mercado-bars {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+/* Linha de cada nível de carreira. */
+.mercado-row {
+  display: grid;
+  grid-template-columns: minmax(5rem, 8rem) 1fr;
+  gap: clamp(0.9rem, 2vw, 1.4rem);
+  align-items: center;
+}
+
+/* Nome do nível: Júnior, Pleno, Sênior. */
+.mercado-row strong {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+}
+
+/* Agrupa as duas barras de cada nível. */
+.mercado-row-bars {
+  display: grid;
+  gap: 0.65rem;
+}
+
+/* Linha individual da barra com o valor ao lado. */
+.mercado-bar-line {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+/* Trilho invisível onde a barra cresce a partir da esquerda. */
+.mercado-bar-fill {
+  width: 0;
+  max-width: 100%;
+  height: 0.48rem;
+  min-width: 0.35rem;
+  border-radius: 999px;
+  box-shadow: 0 0 18px currentColor;
+}
+
+/* Barra verde para Brasil. */
+.mercado-bar-fill.is-brazil {
+  background: #39dca6;
+  color: rgba(57, 220, 166, 0.34);
+}
+
+/* Barra vermelha para Internacional. */
+.mercado-bar-fill.is-international {
+  background: #ff5959;
+  color: rgba(255, 89, 89, 0.32);
+}
+
+/* Valor textual posicionado ao lado da barra. */
+.mercado-bar-line span {
+  flex: 0 0 auto;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: 'Space Mono', Courier New, monospace;
+  font-size: clamp(0.72rem, 1vw, 0.82rem);
+  white-space: nowrap;
+}
+
+/* Legenda de cores no rodapé do painel. */
+.mercado-legend {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.35rem;
+  margin-top: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* Item da legenda. */
+.mercado-legend span {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+}
+
+/* Traço colorido da legenda. */
+.mercado-legend i {
+  display: inline-block;
+  width: 1.8rem;
+  height: 0.34rem;
+  border-radius: 999px;
+}
+
+/* Cor da legenda Brasil. */
+.mercado-legend i.is-brazil {
+  background: #39dca6;
+}
+
+/* Cor da legenda Internacional. */
+.mercado-legend i.is-international {
+  background: #ff5959;
+}
+
+/* Observação pequena para evitar parecer uma promessa oficial rígida. */
+.mercado-note {
+  position: relative;
+  z-index: 1;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+/* Mobile: empilha rótulos e barras para preservar leitura em telas estreitas. */
+@media (max-width: 680px) {
+  .mercado-section {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .mercado-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .mercado-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mercado-bar-line {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.42rem;
+  }
+
+  .mercado-bar-line span {
+    white-space: normal;
+  }
+}
