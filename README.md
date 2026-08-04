@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h1 align="center">Projeto DevClub</h1>
 
 <p align="center">
@@ -68,41 +68,40 @@ Tailwind CSS
 CSS customizado
 
 Rodar localmente
->>>>>>> fc828c448c836a1c00e74e07347148d05f67b8a3
+
 
 npm install
 npm run dev
 
-<<<<<<< HEAD
+
 ---
 
 ## ✅ Validação antes do deploy
 =======
 Validar antes do deploy
->>>>>>> fc828c448c836a1c00e74e07347148d05f67b8a3
+
 
 npm run lint
 npm run build
 
-<<<<<<< HEAD
+
 ---
 
 ## 👀 Preview da versão de produção
 =======
 Preview da versão de produção
->>>>>>> fc828c448c836a1c00e74e07347148d05f67b8a3
+
 
 npm run preview
 
-<<<<<<< HEAD
+
 ---
 =======
 Deploy na Vercel
->>>>>>> fc828c448c836a1c00e74e07347148d05f67b8a3
+
 
 ## ▲ Deploy na Vercel
 
-<<<<<<< HEAD
 Use a seguinte configuração no painel da Vercel:
 
 | Configuração | Valor |
@@ -120,7 +119,7 @@ O arquivo `vercel.json` já está configurado para redirecionar as rotas interna
   Feito para fins de estudo e prática. <br />
   Referência visual e técnica: <a href="https://github.com/GaseousIce/bonfire-bbq">GaseousIce/bonfire-bbq</a>.
 </p>
-=======
+
 Framework Preset: Vite
 
 Install Command: npm install
@@ -136,4 +135,4 @@ Créditos
 Projeto original que serviu como referência visual e técnica:
 
 GaseousIce/bonfire-bbq
->>>>>>> fc828c448c836a1c00e74e07347148d05f67b8a3
+
